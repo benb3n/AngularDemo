@@ -1,0 +1,17 @@
+#!/bin/bash
+echo ‘post-receive: Triggered.’
+cd /opt/live/my-first-app
+echo ‘post-receive: git check out…’
+git --git-dir=https://github.com/benb3n/AngularDemo.git --work-tree=/Users/benedict/Desktop/my-first-app checkout master -f
+echo ‘post-receive: npm install…’
+npm install \
+&& echo ‘post-receive: building…’ \
+&& npm run build \
+&& echo ‘post-receive: → done.’ \
+&& (pm2 delete ‘my-first-app-by-githook’ || true) \
+&& pm2 start npm --name ‘my-first-app-by-githook’ -- start \
+&& echo ‘post-receive: app started successfully with pm2.
+
+
+
+
