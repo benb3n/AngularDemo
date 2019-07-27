@@ -1,3 +1,15 @@
-<p>
-  report-admin works!
-</p>
+From: <input type ='date' [(ngModel)]='startDate'>
+To: <input type ='date' [(ngModel)]='endDate'>
+<button type="button" class="btn btn-info" (click)="submit()">Get Events</button>
+<div class="admin-report-grid" [style.height.px]=getHeight() [style.width.px]=getWidth()>
+<ag-grid-angular 
+    style="width: 90%; height: 80%;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    (gridReady)="onGridReady($event)"
+    >
+</ag-grid-angular>
+<button type="button" class="btn btn-info" (click)="onBtExport()">Export to CSV</button>
+</div>

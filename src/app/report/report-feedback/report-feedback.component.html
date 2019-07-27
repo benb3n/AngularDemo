@@ -1,0 +1,15 @@
+Event Id: <input type ='text' [(ngModel)]='eventId' name='Event Id'>
+<button type="button" class="btn btn-info" (click)="submit()">Get Feedback</button>
+
+<div [style.height.px]=getHeight() [style.width.px]=getWidth()>
+<ag-grid-angular 
+    style="width: 500px; height: 600px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    (gridReady)="onGridReady($event)"
+    >
+</ag-grid-angular>
+<button type="button" class="btn btn-info" (click)="onBtExport()">Export to CSV</button>
+</div>

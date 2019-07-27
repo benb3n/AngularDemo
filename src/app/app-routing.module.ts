@@ -5,6 +5,9 @@ import { EventComponent } from './event/event.component';
 import { EventAdminComponent } from './event-admin/event-admin.component';
 import { ReportUserComponent } from './report/report-user/report-user.component';
 import { ReportAdminComponent } from './report/report-admin/report-admin.component';
+import { ReportEventParticipantComponent } from './report/report-eventparticipant/report-eventparticipant.component';
+import { ReportOrgEventComponent } from './report/report-orgevent/report-orgevent.component';
+import { ReportFeedbackComponent } from './report/report-feedback/report-feedback.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { MyEventComponent } from './profile/my-event/my-event.component';
 import { LoginComponent } from './login/login.component';
@@ -42,6 +45,17 @@ const appRoutes: Routes = [
     component: ReportAdminComponent
   },
   {
+    path: 'report/eventparticipant',
+    component: ReportEventParticipantComponent
+  },
+  {
+    path: 'report/orgevent',
+    component: ReportOrgEventComponent
+  },
+  {
+    path: 'report/eventFeedback',
+    component: ReportFeedbackComponent
+  },{
     path: 'profile/edit-profile',
     component: EditProfileComponent
   },
