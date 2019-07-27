@@ -16,6 +16,14 @@
         <li routerLinkActive="active"><a routerLink="/event" *ngIf="this.loginService.isLogin()">Event</a></li>
         <li routerLinkActive="active"><a routerLink="/report/user" *ngIf="this.loginService.isLogin()">Report (User)</a></li>
         <li routerLinkActive="active"><a routerLink="/report/admin" *ngIf="this.loginService.isLogin()">Report (Admin)</a></li>
+        <li class="dropdown" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="this.loginService.isLogin()">Organizaiton <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="cursor: pointer;" routerLink="/organizaiton/group">Organizaiton group</a></li>
+            <li><a style="cursor: pointer;" routerLink="/organizaiton/accesses">Admin management</a></li>
+            <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <ul class="nav navbar-nav">

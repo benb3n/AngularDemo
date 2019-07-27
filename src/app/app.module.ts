@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { RegisterComponent } from './login/register/register.component';
+import { AccessesComponent } from './organization/accesses/accesses.component';
+import { GroupComponent } from './organization/group/group.component';
+
 
 // Add New Features into this Module
 const featureModules = [
@@ -33,6 +36,9 @@ const featureModules = [
     DropdownDirective,
     LoginComponent,
     RegisterComponent,
+    AccessesComponent,
+    GroupComponent,
+
   ],
   imports: [
     FormsModule,
