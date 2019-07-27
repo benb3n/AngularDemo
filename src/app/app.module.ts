@@ -6,20 +6,25 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { EventModule } from './event/event.module';
-import { ReportAdminComponent } from './report/report-admin/report-admin.component';
 import { ReportModule } from './report/report.module';
+import { FooterComponent } from './footer/footer.component';
+import { DropdownDirective } from './directives/dropdown.directive';
+import { ProfileModule } from './profile/profile.module';
 
 // Add New Features into this Module
 const featureModules = [
   EventModule,
-  ReportModule
+  ReportModule,
+  ProfileModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    DropdownDirective,
   ],
   imports: [
     BrowserModule,
