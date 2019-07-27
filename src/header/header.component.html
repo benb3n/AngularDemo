@@ -1,34 +1,5 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="#">Angular Home Component</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/event">Event</a>
-    </div>
-  </div>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/report/user">Report (User)</a>
-    </div>
-  </div>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/report/admin">Report (Admin)</a>
-    </div>
-  </div>
-  <ul class="nav navbar-nav navbar-right">
-    <li><a routerLink="/signup">Register</a></li>
-    <li><a routerLink="/signin">Login</a></li>
-    <li><a style="cursor: pointer;">Logout</a></li>
-  </ul>
-</!-->
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
         data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -37,53 +8,31 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Angular Home Component</a>
+      <a class="navbar-brand">Angular Home Component</a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="/event">Event</a></li>
-        <li><a href="../report/user">User Report</a></li>
-        <li><a href="/report/admin">Admin Report</a></li>
-        <li><a href="/report/eventparticipant">Event Details Report</a></li>
-        <li><a href="/report/orgevent">Organisation's Event</a></li>
-        <li><a href="/report/eventFeedback">Event Feedback</a></li>
-        <!-- <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li> -->
+        <li routerLinkActive="active"><a routerLink="/home">Home <span class="sr-only">(current)</span></a></li>
+        <li routerLinkActive="active"><a routerLink="/event" *ngIf="this.loginService.isLogin()">Event</a></li>
+        <li routerLinkActive="active"><a routerLink="../report/user" *ngIf="this.loginService.isLogin()">User Report</a></li>
+        <li routerLinkActive="active"><a routerLink="/report/admin" *ngIf="this.loginService.isLogin()">Admin Report</a></li>
+        <li routerLinkActive="active"><a routerLink="/report/eventparticipant" *ngIf="this.loginService.isLogin()">Event Details Report</a></li>
+        <li routerLinkActive="active"><a routerLink="/report/orgevent" *ngIf="this.loginService.isLogin()">Organisation's Event</a></li>
+        <li routerLinkActive="active"><a routerLink="/report/eventFeedback" *ngIf="this.loginService.isLogin()">Event Feedback</a></li>
       </ul>
-      <!-- <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a href="#">Link</a></li> -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false">Profile <span class="caret"></span></a>
+          <ul class="nav navbar-nav">
+          <li><a routerLink="/login" *ngIf="!this.loginService.isLogin()">Login <span class="sr-only">(current)</span></a></li>
+        </ul>
+        <li class="dropdown" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="this.loginService.isLogin()">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a style="cursor: pointer;" routerLink="/profile/edit-profile">Edit My Profile</a></li>
+            <li><a style="cursor: pointer;" routerLink="/profile/my-event">My Events</a></li>
+            <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>

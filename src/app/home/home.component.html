@@ -1,4 +1,8 @@
-<!-- TO DO HOME PAGE HERE -->
-<p>
-  home works!
-</p>
+<div style="text-align: center;">
+    <img src="assets/volunteer.png" style="opacity: 0.8;"/>
+    <br/>
+    <h1>Welcome to the Volunteering App</h1>
+    <h3 *ngIf="!this.loginService.isLogin()"><a routerLink="/login">Login now</a> to begin your volunteering journey!</h3>
+</div>
+
+
