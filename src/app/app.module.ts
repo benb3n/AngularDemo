@@ -7,6 +7,7 @@ import { HeaderComponent } from 'src/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { EventModule } from './event/event.module';
 import { ReportModule } from './report/report.module';
+import { FormsModule } from '@angular/forms';
 
 import { AgGridModule }  from 'ag-grid-angular/main';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -29,7 +30,8 @@ const featureModules = [
     AppRoutingModule,
     ...featureModules,
     AgGridModule.withComponents([]),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

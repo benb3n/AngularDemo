@@ -4,6 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { EventComponent } from './event/event.component';
 import { ReportUserComponent } from './report/report-user/report-user.component';
 import { ReportAdminComponent } from './report/report-admin/report-admin.component';
+import { ReportEventParticipantComponent } from './report/report-eventparticipant/report-eventparticipant.component';
+import { ReportOrgEventComponent } from './report/report-orgevent/report-orgevent.component';
+import { ReportFeedbackComponent } from './report/report-feedback/report-feedback.component';
+
 
 const appRoutes: Routes = [
   {
@@ -21,6 +25,18 @@ const appRoutes: Routes = [
   {
     path: 'report/admin',
     component: ReportAdminComponent
+  },
+  {
+    path: 'report/eventparticipant',
+    component: ReportEventParticipantComponent
+  },
+  {
+    path: 'report/orgevent',
+    component: ReportOrgEventComponent
+  },
+  {
+    path: 'report/eventFeedback',
+    component: ReportFeedbackComponent
   },
   {
     path: '',
