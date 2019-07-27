@@ -1,0 +1,19 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div class="form-group">
+    <input type="text" name="email" placeholder="Enter Your Email" ngModel class="form-control">
+  </div>
+  <br />
+  <div class="form-group">
+    <input type="password" name="password" placeholder="Enter Your Password" ngModel class="form-control">
+  </div>
+  <br />
+  <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
+<br />
+<p>
+  If You Forget Your Password <a routerLink="/forget-password">Click Here</a>
+</p>
+<p>
+  <a routerLink="/register">Register Now</a>
+</p>

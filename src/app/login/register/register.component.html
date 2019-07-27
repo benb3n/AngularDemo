@@ -1,0 +1,20 @@
+<h1> Sign up </h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div class="form-group">
+    <input type="text" name="email" placeholder="Enter Your Email" ngModel class="form-control">
+  </div>
+  <br />
+  <div class="form-group">
+    <input type="text" name="firstname" placeholder="Your Firstname" ngModel class="form-control">
+  </div>
+  <br />
+  <div class="form-group">
+    <input type="text" name="lastname" placeholder="Your Lastname" ngModel class="form-control">
+  </div>
+  <br/>
+  <div class="form-group">
+    <input type="password" name="password" placeholder="Enter Your Password" ngModel class="form-control">
+  </div>
+  <br />
+  <input type="submit" value="Register" class="btn btn-primary">
+</form>
