@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { EventComponent } from './event/event.component';
+import { EventAdminComponent } from './event-admin/event-admin.component';
 import { ReportUserComponent } from './report/report-user/report-user.component';
 import { ReportAdminComponent } from './report/report-admin/report-admin.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
@@ -10,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register/register.component';
 
 const appRoutes: Routes = [
+
   {
     path: 'login',
     component: LoginComponent
@@ -19,6 +21,7 @@ const appRoutes: Routes = [
     component: RegisterComponent
   },
   {
+
     path: 'home',
     component: HomeComponent
   },
@@ -26,6 +29,10 @@ const appRoutes: Routes = [
     path: 'event',
     component: EventComponent
   },
+    {
+      path: 'event/admin',
+      component: EventAdminComponent
+    },
   {
     path: 'report/user',
     component: ReportUserComponent
