@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { events } from './events';
+import { CommunicatorService } from '../communicator.service';
 
 @Component({
   selector: 'app-event',
@@ -8,7 +9,8 @@ import { events } from './events';
 })
 export class EventComponent implements OnInit {
   events: any[];
-  constructor() { }
+
+  constructor(private communicatorService: CommunicatorService) { }
 
   ngOnInit() {
     this.events = events;
@@ -16,11 +18,18 @@ export class EventComponent implements OnInit {
 
   }
 
-  register(){
-    window.alert('The register function is not implemented yet');
+  register() {
+    // window.alert('The register function is not implemented yet');
+    this.communicatorService.subscribeEvent().subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (err) => console.error(err)
+    );
   }
-  withdraw(){
-    window.alert('We are going to withdraw you from the event')
+
+  withdraw() {
+    window.alert('We are going to withdraw you from the event');
   }
 
 }
