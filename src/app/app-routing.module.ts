@@ -4,6 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { EventComponent } from './event/event.component';
 import { ReportUserComponent } from './report/report-user/report-user.component';
 import { ReportAdminComponent } from './report/report-admin/report-admin.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { MyEventComponent } from './profile/my-event/my-event.component';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +23,14 @@ const appRoutes: Routes = [
   {
     path: 'report/admin',
     component: ReportAdminComponent
+  },
+  {
+    path: 'profile/edit-profile',
+    component: EditProfileComponent
+  },
+  {
+    path: 'profile/my-event',
+    component: MyEventComponent
   },
   {
     path: '',
