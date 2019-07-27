@@ -1,4 +1,15 @@
 <!-- TO DO EVENT PAGE -->
+
+<div class="container">
+  <div class="row">
+      <div class="search-bar">
+        <input size="100" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search event"
+        (keyup.enter)="search(searchText)">
+      </div>
+  </div> 
+
+
+</div>
 <h2> Here are some nice events!</h2>
 <div class="panel panel-default" *ngFor="let event of events">
   <div class="panel-heading">
