@@ -2,31 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../report.service';
 
 @Component({
-  selector: 'app-report-admin',
-  templateUrl: './report-admin.component.html',
-  styleUrls: ['./report-admin.component.scss']
+  selector: 'app-report-feedback',
+  templateUrl: './report-feedback.component.html',
+  styleUrls: ['./report-feedback.component.scss']
 })
-export class ReportAdminComponent implements OnInit {
+export class ReportFeedbackComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
 
   private columnDefs;
   private defaultColDef;
   private rowData = [];
-  startDate='';
-  endDate='';
+  eventId;
 
   constructor(private reportService: ReportService) { 
   this.columnDefs = [
-        {headerName: 'Event Name', field: 'eventName' },
-        {headerName: 'Event Description', field: 'eventDesc' },
-        {headerName: 'Start Time', field: 'startTime'},
-        {headerName: 'End Time', field: 'endTime'},
-        {headerName: 'Minimum Participants', field: 'minPax'},
-        {headerName: 'Maximum Participants', field: 'maxPax'},
-        {headerName: 'Organiser ID', field: 'organiserId'},
-        {headerName: 'Number of Signups', field: 'signupCount'},
-        {headerName: 'Status', field: 'status'}
+        {headerName: 'User Id', field: 'userId' },
+        {headerName: 'Event Status', field: 'status'},
+        {headerName: 'Feedback', field: 'feedback'}
     ];
     this.defaultColDef = { sortable: true };
   }
@@ -34,7 +27,7 @@ export class ReportAdminComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.getAdminReports();
+    this.getFeedback();
   }
     
   ngOnInit() {
@@ -56,14 +49,16 @@ export class ReportAdminComponent implements OnInit {
     this.gridApi.exportDataAsCsv(params);
   }
 
-  getAdminReports(){
+  getFeedback(){
     const _this = this;
-    console.log(this.startDate);
-    console.log(this.endDate);
-    this.reportService.getAllAdminEvents(_this.startDate, _this.endDate).subscribe(data =>{
+    this.reportService.getEventFeedback(_this.eventId).subscribe(data =>{
      // _this.gridApi.setRowData(data);
      _this.rowData = data;
     })
+  }
+
+  submit(){
+    this.getFeedback();
   }
 
   getHeight(): number {
@@ -72,12 +67,6 @@ export class ReportAdminComponent implements OnInit {
  
   getWidth(): number {
     return window.innerWidth - 2 ;
-  }
-
-  submit(){
-    console.log(this.startDate);
-    console.log(this.endDate);
-    this.getAdminReports();
   }
  
 

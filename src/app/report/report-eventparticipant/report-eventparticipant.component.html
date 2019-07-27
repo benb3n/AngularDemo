@@ -1,6 +1,7 @@
-From: <input type ='date' [(ngModel)]='startDate'>
-To: <input type ='date' [(ngModel)]='endDate'>
-<button type="button" class="btn btn-info" (click)="submit()">Get Events</button>
+
+Event Id: <input type ='text' [(ngModel)]='eventId' name='Event Id'>
+<button type="button" class="btn btn-info" (click)="submit()">Get Users</button>
+
 <div [style.height.px]=getHeight() [style.width.px]=getWidth()>
 <ag-grid-angular 
 style="width: 500px; height: 600px;" 
