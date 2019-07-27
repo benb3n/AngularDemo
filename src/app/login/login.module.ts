@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventComponent } from './event.component';
+import { LoginService } from './login.service';
 
 @NgModule({
-  declarations: [
-    EventComponent
-  ],
-  providers: [],
+  declarations: [],
+  providers: [LoginService],
   imports: [
     CommonModule
   ]
 })
-export class EventModule { }
+export class LoginModule { }

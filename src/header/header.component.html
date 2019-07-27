@@ -13,13 +13,16 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/home">Home <span class="sr-only">(current)</span></a></li>
-        <li routerLinkActive="active"><a routerLink="/event">Event</a></li>
-        <li routerLinkActive="active"><a routerLink="/report/user">Report (User)</a></li>
-        <li routerLinkActive="active"><a routerLink="/report/admin">Report (Admin)</a></li>
+        <li routerLinkActive="active"><a routerLink="/event" *ngIf="this.loginService.isLogin()">Event</a></li>
+        <li routerLinkActive="active"><a routerLink="/report/user" *ngIf="this.loginService.isLogin()">Report (User)</a></li>
+        <li routerLinkActive="active"><a routerLink="/report/admin" *ngIf="this.loginService.isLogin()">Report (Admin)</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
+          <li><a routerLink="/login" *ngIf="!this.loginService.isLogin()">Login <span class="sr-only">(current)</span></a></li>
+        </ul>
         <li class="dropdown" appDropdown>
-          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Profile <span class="caret"></span></a>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="this.loginService.isLogin()">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" routerLink="/profile/edit-profile">Edit My Profile</a></li>
             <li><a style="cursor: pointer;" routerLink="/profile/my-event">My Events</a></li>
