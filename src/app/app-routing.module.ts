@@ -12,6 +12,8 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { MyEventComponent } from './profile/my-event/my-event.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register/register.component';
+import { GroupComponent } from './organization/group/group.component';
+import { AccessesComponent } from './organization/accesses/accesses.component';
 
 const appRoutes: Routes = [
 
@@ -62,6 +64,14 @@ const appRoutes: Routes = [
   {
     path: 'profile/my-event',
     component: MyEventComponent
+  },
+  {
+    path: 'organizaiton/group',
+    component: GroupComponent
+  },
+  {
+    path: 'organizaiton/accesses',
+    component: AccessesComponent
   },
   {
     path: '',
