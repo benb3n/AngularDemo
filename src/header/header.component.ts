@@ -8,4 +8,8 @@ export class HeaderComponent {
   constructor() {
   }
 
+  public logout() {
+      console.log('To logout..');
+  }
+
 }
