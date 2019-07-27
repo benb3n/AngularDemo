@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { RegisterComponent } from './login/register/register.component';
+import { AccessesComponent } from './organization/accesses/accesses.component';
+import { GroupComponent } from './organization/group/group.component';
 import { EventAdminComponent } from './event-admin/event-admin.component';
 import {
   MatButtonModule,
@@ -47,6 +49,9 @@ const featureModules = [
     EventAdminComponent,
     LoginComponent,
     RegisterComponent,
+    AccessesComponent,
+    GroupComponent,
+
   ],
   imports: [
     ReportModule,
@@ -74,4 +79,3 @@ const featureModules = [
 })
 
 export class AppModule { }
-
