@@ -20,7 +20,7 @@ export class EventComponent implements OnInit {
     window.alert('The register function is not implemented yet');
   }
   withdraw(){
-    window.alert('We are going to withdraw you from the event')
+    window.alert('We are going to withdraw you from the event');
   }
 
 }
