@@ -1,5 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { events } from './events';
+import { users } from './users';
+import { eventRegistrations } from './eventRegistrations'
 
 @Component({
   selector: 'app-event',
@@ -9,12 +11,19 @@ import { events } from './events';
 
 export class EventComponent implements OnInit {
   events: any[];
+  users: any[];
+  eventRegistrations: any[];
+  currUserId = 'my77741';
+
   title = 'Angular Search Using ng2-search-filter';
   searchText;
   constructor() { }
 
   ngOnInit() {
     this.events = events;
+    this.users = users;
+    this.eventRegistrations = eventRegistrations;
+
     console.log(this.events);
 
   }
@@ -28,5 +37,16 @@ export class EventComponent implements OnInit {
   search(searchText){
     window.alert('We are searching events related to ' + searchText);
   }
+  isRegistered(eventId, userId){
+    let result: boolean = false;
 
+    eventRegistrations.forEach(function (eR) {
+      if(eR.user_id == userId && eR.event_id == eventId) {
+        if (eR.status == "registered"){
+          result = true;
+        }
+      }
+    });
+    return result;
+  }
 }

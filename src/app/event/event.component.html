@@ -27,13 +27,13 @@
     <p *ngIf="event.date">
       Date: {{ event.date }}
     </p>
-    <p *ngIf="event.registered">
+    <p *ngIf="isRegistered(event.id, currUserId)">
       You are registered :)
     </p>
-    <button *ngIf="event.registered" (click)="withdraw()">
+    <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw()">
         Withdraw
       </button>
-    <button *ngIf="!event.registered" (click)="register()">
+    <button *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
       Register
     </button>
   </div>
