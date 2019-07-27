@@ -11,10 +11,25 @@ import { ReportModule } from './report/report.module';
 import { FooterComponent } from './footer/footer.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { ProfileModule } from './profile/profile.module';
+
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { RegisterComponent } from './login/register/register.component';
+
+import { EventAdminComponent } from './event-admin/event-admin.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import {
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+} from '@angular/material';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 // Add New Features into this Module
 const featureModules = [
@@ -25,23 +40,31 @@ const featureModules = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    FooterComponent,
-    DropdownDirective,
-    LoginComponent,
-    RegisterComponent,
-  ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ...featureModules
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        HomeComponent,
+        FooterComponent,
+        DropdownDirective,
+        EventAdminComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRippleModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NgbModule,
+        ...featureModules
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+    })
+
 export class AppModule { }
+
