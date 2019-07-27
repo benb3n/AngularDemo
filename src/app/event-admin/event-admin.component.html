@@ -1,5 +1,4 @@
-<form *ngIf=".registered" [formGroup]="eventForm" (ngSubmit)="onSubmit(eventForm)" class="form-inline">
-
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit(eventForm)" class="form-inline">
     <div formGroupName="eventDetails">
 
         <h3>New Event</h3>
@@ -12,7 +11,8 @@
         <div>
             <label>Event Date:</label>
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate" required>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate"
+                    required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
