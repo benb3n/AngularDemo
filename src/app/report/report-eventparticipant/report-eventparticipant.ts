@@ -1,30 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ReportService } from '../report.service';
 
 @Component({
-  selector: 'app-report-admin',
-  templateUrl: './report-admin.component.html',
-  styleUrls: ['./report-admin.component.scss']
+  selector: 'app-report-user',
+  templateUrl: './report-user.component.html',
+  styleUrls: ['./report-user.component.css']
 })
-export class ReportAdminComponent implements OnInit {
+export class ReportUserComponent implements OnInit {
+
   private gridApi;
   private gridColumnApi;
 
   private columnDefs;
   private defaultColDef;
   private rowData = [];
+  gridHeight = window.innerHeight;
 
-  constructor(private reportService: ReportService) { 
+  constructor(private reportService: ReportService, private ref: ChangeDetectorRef) { 
   this.columnDefs = [
-        {headerName: 'Event Name', field: 'eventName' },
-        {headerName: 'Event Description', field: 'eventDesc' },
-        {headerName: 'Start Time', field: 'startTime'},
-        {headerName: 'End Time', field: 'endTime'},
-        {headerName: 'Minimum Participants', field: 'minPax'},
-        {headerName: 'Maximum Participants', field: 'maxPax'},
-        {headerName: 'Organiser ID', field: 'organiserId'},
-        {headerName: 'Number of Signups', field: 'signupCount'},
-        {headerName: 'Status', field: 'status'}
+        {headerName: 'Nationality', field: 'nationality' },
+        {headerName: 'Gender', field: 'gender' },
+        {headerName: 'Birth Date', field: 'birthDate'},
+        {headerName: 'Region', field: 'region'},
     ];
     this.defaultColDef = { sortable: true };
   }
@@ -32,7 +29,8 @@ export class ReportAdminComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.getAdminReports();
+    this.getUserReports();
+    params.api.sizeColumnsToFit();
   }
     
   ngOnInit() {
@@ -54,12 +52,20 @@ export class ReportAdminComponent implements OnInit {
     this.gridApi.exportDataAsCsv(params);
   }
 
-  getAdminReports(){
+  getUserReports(){
     const _this = this;
-    this.reportService.getAllAdminEvents().subscribe(data =>{
+    const userId="1"
+    this.reportService.getUserEvents(userId).subscribe(data =>{
      // _this.gridApi.setRowData(data);
      _this.rowData = data;
     })
+  }
+
+  onResize(){
+    this.gridHeight = window.innerHeight;
+    this.gridApi.sizeColumnsToFit();
+    this.ref.detectChanges();
+
   }
 
   getHeight(): number {
@@ -69,9 +75,5 @@ export class ReportAdminComponent implements OnInit {
   getWidth(): number {
     return window.innerWidth - 2 ;
   }
- 
-
-  	
-  
 
 }

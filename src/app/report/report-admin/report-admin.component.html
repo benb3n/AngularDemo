@@ -1,3 +1,12 @@
-<p>
-  report-admin works!
-</p>
+<div class="admin-report-grid" [style.height.px]=getHeight() [style.width.px]=getWidth()>
+<ag-grid-angular 
+    style="width: 90%; height: 80%;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    (gridReady)="onGridReady($event)"
+    >
+</ag-grid-angular>
+</div>
+<button type="button" class="btn btn-info" (click)="onBtExport()">Export to CSV</button>

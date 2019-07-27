@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { EventModule } from './event/event.module';
-import { ReportAdminComponent } from './report/report-admin/report-admin.component';
 import { ReportModule } from './report/report.module';
+
+import { AgGridModule }  from 'ag-grid-angular/main';
+import { HttpClientModule } from '@angular/common/http'; 
 
 // Add New Features into this Module
 const featureModules = [
@@ -22,11 +24,17 @@ const featureModules = [
     HomeComponent
   ],
   imports: [
+  ReportModule,
     BrowserModule,
     AppRoutingModule,
-    ...featureModules
+    ...featureModules,
+    AgGridModule.withComponents([]),
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[
+    AgGridModule
+  ]
 })
 export class AppModule { }
