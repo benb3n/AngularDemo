@@ -1,4 +1,30 @@
 <!-- TO DO EVENT PAGE -->
-<p>
-  event works!
-</p>
+<h2> Here are some nice events!</h2>
+<div class="panel panel-default" *ngFor="let event of events">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a [title]="event.name + ' description'">
+        {{event.name}}
+      </a>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <p *ngIf="event.description">
+      Description: {{ event.description }}
+    </p>
+
+    <p *ngIf="event.date">
+      Date: {{ event.date }}
+    </p>
+    <p *ngIf="event.registered">
+      You are registered :)
+    </p>
+    <button *ngIf="event.registered" (click)="withdraw()">
+        Withdraw
+      </button>
+    <button *ngIf="!event.registered" (click)="register()">
+      Register
+    </button>
+  </div>
+
+</div>
