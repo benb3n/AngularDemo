@@ -14,6 +14,7 @@ import { ProfileModule } from './profile/profile.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
+import { RegisterComponent } from './login/register/register.component';
 
 // Add New Features into this Module
 const featureModules = [
@@ -31,6 +32,7 @@ const featureModules = [
     FooterComponent,
     DropdownDirective,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     FormsModule,

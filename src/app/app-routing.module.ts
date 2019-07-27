@@ -7,11 +7,16 @@ import { ReportAdminComponent } from './report/report-admin/report-admin.compone
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { MyEventComponent } from './profile/my-event/my-event.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './login/register/register.component';
 
 const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'home',
