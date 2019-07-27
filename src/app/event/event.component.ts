@@ -38,7 +38,8 @@ export class EventComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-  withdraw() {
+
+  withdraw(){
     window.alert('We are going to withdraw you from the event');
   }
   search(searchText){

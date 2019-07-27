@@ -1,0 +1,40 @@
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit(eventForm)" class="form-inline">
+    <div formGroupName="eventDetails">
+
+        <h3>New Event</h3>
+
+        <div>
+            <label>Event Name:</label>
+            <input class="form-control" type="text" formControlName="eventName" required>
+        </div>
+
+        <div>
+            <label>Event Date:</label>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate"
+                    required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <label>Event Category:</label>
+            <input class="form-control" type="text" formControlName="eventCategory" required>
+        </div>
+
+        <div>
+            <label>Event Max Pax:</label>
+            <input class="form-control" type="text" formControlName="eventMaxPax" required>
+        </div>
+
+        <div>
+            <label>Event Description:</label>
+            <textarea class="form-control" formControlName="eventDescription" required></textarea>
+        </div>
+    </div>
+
+
+    <button class="btn btn-primary" type="submit">Send</button>
+
+</form>

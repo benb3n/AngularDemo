@@ -14,6 +14,7 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/home">Home <span class="sr-only">(current)</span></a></li>
         <li routerLinkActive="active"><a routerLink="/event" *ngIf="this.loginService.isLogin()">Event</a></li>
+        <li routerLinkActive="active"><a routerLink="/event/admin" *ngIf="this.loginService.isLogin()">Event (Admin)</a></li>
         <li routerLinkActive="active"><a routerLink="/report/user" *ngIf="this.loginService.isLogin()">Report (User)</a></li>
         <li routerLinkActive="active"><a routerLink="/report/admin" *ngIf="this.loginService.isLogin()">Report (Admin)</a></li>
         <li class="dropdown" appDropdown>
