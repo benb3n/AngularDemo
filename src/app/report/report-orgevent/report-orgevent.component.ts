@@ -1,13 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ReportService } from '../report.service';
-import { _ } from 'ag-grid-community';
 
 @Component({
-  selector: 'app-report-user',
-  templateUrl: './report-user.component.html',
-  styleUrls: ['./report-user.component.css']
+  selector: 'app-report-orgevent',
+  templateUrl: './report-orgevent.component.html',
+  styleUrls: ['./report-orgevent.component.css']
 })
-export class ReportUserComponent implements OnInit {
+export class ReportOrgEventComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
@@ -15,15 +14,19 @@ export class ReportUserComponent implements OnInit {
   private columnDefs;
   private defaultColDef;
   private rowData = [];
+  organisationId;
   gridHeight = window.innerHeight;
-  startDate = '';
-  endDate='';
 
   constructor(private reportService: ReportService, private ref: ChangeDetectorRef) { 
   this.columnDefs = [
-        {headerName: 'Event ID', field: 'eventId' },
-        {headerName: 'Organiser ID', field: 'organiserId' },
-        {headerName: 'Duration', field: 'Duration'},
+        {headerName: 'Organisation Name', field: 'orgName' },
+        {headerName: 'Organisation Id', field: 'orgId' },
+        {headerName: 'Event Name', field: 'eventName'},
+        {headerName: 'Event Description', field: 'eventDesc'},
+        {headerName: 'Sign Up No', field: 'signupCount'},
+        {headerName: 'Status', field: 'status'},
+        {headerName: 'Start Time', field: 'startTime'},
+        {headerName: 'End Time', field: 'endTime'},
 
     ];
     this.defaultColDef = { sortable: true };
@@ -32,7 +35,7 @@ export class ReportUserComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.getUserReports();
+    this.getOrgEventReport();
     params.api.sizeColumnsToFit();
   }
     
@@ -55,12 +58,10 @@ export class ReportUserComponent implements OnInit {
     this.gridApi.exportDataAsCsv(params);
   }
 
-  getUserReports(){
+  getOrgEventReport(){
     const _this = this;
-    //TODO: take in userId from login
-    const userId="1"
-    this.reportService.getUserEvents(userId, _this.startDate, _this.endDate).subscribe(data =>{
-     // _this.gridApi.setRowData(data);
+    
+    this.reportService.getOrgEvent(_this.organisationId).subscribe(data =>{
      _this.rowData = data;
     })
   }
@@ -80,8 +81,8 @@ export class ReportUserComponent implements OnInit {
     return window.innerWidth - 2 ;
   }
 
-  submit(){
-    this.getUserReports();
+  submit() {
+    this.getOrgEventReport();
   }
 
 }

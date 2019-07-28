@@ -1,0 +1,32 @@
+<h2>Admin managment</h2>
+<div class="container">
+  <div class="row">
+      <div class="search-bar">
+        <input size="100" type="text" name="searchUser" [(ngModel)]="searchText" autocomplete="off" placeholder="Search user by emails"
+        (keyup.enter)="search(searchText)">
+      </div>
+  </div>
+<br />
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Accessibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>11</td>
+          <td>11</td>
+          <td>user</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td>22</td>
+          <td>Admin</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

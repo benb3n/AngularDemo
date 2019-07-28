@@ -1,3 +1,37 @@
-<p>
-  edit-profile works!
-</p>
+<h1>Update your profile</h1>
+<div>
+  <form editProfile="ngForm" (ngSubmit)="onSubmit(editProfile.value)">
+    <div class="form-group">
+      <input type="text" name="email" value="" ngModel class="form-control">
+    </div>
+    <br />
+    <div class="form-group">
+      <input type="text" name="firstname" value="" ngModel class="form-control">
+    </div>
+    <br />
+    <div class="form-group">
+      <input type="text" name="lastname" value="" ngModel class="form-control">
+    </div>
+    <br/>
+    <input type="submit" value="Update profile" class="btn btn-primary">
+  </form>
+</div>
+<div>
+  <h2>Change your password</h2>
+  <form changePw="ngForm" (ngSubmit)="onSubmit(changePw.value)">
+    <div class="form-group">
+      <input type="password" name="oldPassword" placeholder="Enter Your Old Password" ngModel class="form-control">
+    </div>
+    <br />
+    <div class="form-group">
+      <input type="password" name="newPassword" placeholder="Enter Your New Password" ngModel class="form-control">
+    </div>
+    <br />
+    <input type="submit" value="Change password" class="btn btn-primary">
+  </form>
+</div>
+<br />
+<br />
+<div>
+  <p>If you would like to remove your account <a>click here</a></p>
+</div>

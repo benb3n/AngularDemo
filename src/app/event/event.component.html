@@ -4,10 +4,9 @@
   <div class="row">
       <div class="search-bar">
         <input size="100" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search event"
-        (keyup.enter)="search(searchText)">
+        (keyup.enter)="searchAllEvents(searchText)">
       </div>
   </div> 
-
 
 </div>
 <h2> Here are some nice events!</h2>
@@ -27,13 +26,13 @@
     <p *ngIf="event.date">
       Date: {{ event.date }}
     </p>
-    <p *ngIf="isRegistered(event.id, currUserId)">
+    <p *ngIf="isRegistered(event.id)">
       You are registered :)
     </p>
-    <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw()">
+    <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw(event.id)">
         Withdraw
       </button>
-    <button *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
+    <button *ngIf="!isRegistered(event.id, currUserId)" (click)="register(event.id)">
       Register
     </button>
   </div>

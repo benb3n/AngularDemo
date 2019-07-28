@@ -1,13 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ReportService } from '../report.service';
-import { _ } from 'ag-grid-community';
 
 @Component({
-  selector: 'app-report-user',
-  templateUrl: './report-user.component.html',
-  styleUrls: ['./report-user.component.css']
+  selector: 'app-report-eventparticipant',
+  templateUrl: './report-eventparticipant.component.html',
+  styleUrls: ['./report-eventparticipant.component.css']
 })
-export class ReportUserComponent implements OnInit {
+export class ReportEventParticipantComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
@@ -15,16 +14,15 @@ export class ReportUserComponent implements OnInit {
   private columnDefs;
   private defaultColDef;
   private rowData = [];
+  eventId;
   gridHeight = window.innerHeight;
-  startDate = '';
-  endDate='';
 
   constructor(private reportService: ReportService, private ref: ChangeDetectorRef) { 
   this.columnDefs = [
-        {headerName: 'Event ID', field: 'eventId' },
-        {headerName: 'Organiser ID', field: 'organiserId' },
-        {headerName: 'Duration', field: 'Duration'},
-
+        {headerName: 'Nationality', field: 'nationality' },
+        {headerName: 'Gender', field: 'gender' },
+        {headerName: 'Birth Date', field: 'birthDate'},
+        {headerName: 'Region', field: 'region'},
     ];
     this.defaultColDef = { sortable: true };
   }
@@ -32,7 +30,7 @@ export class ReportUserComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.getUserReports();
+    this.getEventParticipantReport();
     params.api.sizeColumnsToFit();
   }
     
@@ -55,12 +53,10 @@ export class ReportUserComponent implements OnInit {
     this.gridApi.exportDataAsCsv(params);
   }
 
-  getUserReports(){
+  getEventParticipantReport(){
     const _this = this;
-    //TODO: take in userId from login
-    const userId="1"
-    this.reportService.getUserEvents(userId, _this.startDate, _this.endDate).subscribe(data =>{
-     // _this.gridApi.setRowData(data);
+    
+    this.reportService.getEventParticipant(_this.eventId).subscribe(data =>{
      _this.rowData = data;
     })
   }
@@ -80,8 +76,8 @@ export class ReportUserComponent implements OnInit {
     return window.innerWidth - 2 ;
   }
 
-  submit(){
-    this.getUserReports();
+  submit() {
+    this.getEventParticipantReport();
   }
 
 }
