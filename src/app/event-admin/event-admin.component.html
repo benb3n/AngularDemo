@@ -2,21 +2,30 @@
     <div formGroupName="eventDetails">
 
         <h3>New Event</h3>
-
-        <div>
-            <label>Event Name:</label>
-            <input class="form-control" type="text" formControlName="eventName" required>
+        
+        <div class="row">
+            <div class="col-3">
+                <label>Event Name:</label>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="text" formControlName="eventName" required>
+            </div>
         </div>
 
-        <div>
-            <label>Event Date:</label>
-            <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate"
-                    required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-3">
+                <label>Event Date:</label>
+            </div>
+            <div class="col-4">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate"
+                        required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
         </div>
+      
 
         <div>
             <label>Event Category:</label>

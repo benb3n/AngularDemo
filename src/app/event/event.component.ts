@@ -17,7 +17,7 @@ export class EventComponent implements OnInit {
   events: any;
   users: any[];
   eventRegistrations: any[];
-  currentUserId: string;
+  currentUserId: number;
 
   dtOptions: any = {};
 
@@ -27,7 +27,7 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     //this.currentUserId = this.loginService.currentUser.emailAddress;
-    this.currentUserId = "1";
+    this.currentUserId = this.loginService.currentUser.UserId;  
     this.getEventRegistrations();
     
 
