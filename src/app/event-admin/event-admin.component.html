@@ -1,4 +1,22 @@
-<form *ngIf=".registered" [formGroup]="eventForm" (ngSubmit)="onSubmit(eventForm)" class="form-inline">
+<div *ngIf="getEvent()">
+    <button class="btn btn-primary" (click)="addingEvent()">Add</button>
+    <ul class="list-group" *ngFor="let event of events">
+        <li class="list-group-item">Event Name: {{ event.name }}</li>
+        <li class="list-group-item">Event Date: {{ event.date }}</li>
+        <li class="list-group-item">Event Category: {{ event.category }}</li>
+        <li class="list-group-item">Event Max Pax: {{ event.maxpax }}</li>
+        <li class="list-group-item">Event Description: {{ event.description }}</li>
+        <button class="btn btn-primary" (click)="editingEvent(event)">Edit</button>
+    </ul>
+</div>
+
+<div *ngIf="editEvent()">
+    <h2>Hi Hi</h2>
+    <button class="btn btn-primary">Edit</button>
+</div>
+
+
+<form *ngIf="addEvent()" [formGroup]="eventForm" (ngSubmit)="onSubmit(eventForm)" class="form-inline">
 
     <div formGroupName="eventDetails">
 
@@ -35,6 +53,6 @@
     </div>
 
 
-    <button class="btn btn-primary" type="submit">Send</button>
+    <button class="btn btn-primary" [disabled]="!eventForm.valid" type="submit">Send</button>
 
 </form>

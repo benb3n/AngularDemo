@@ -43,15 +43,15 @@ export class EventComponent implements OnInit {
 
     window.alert('We are going to withdraw you from the event');
   }
-  search(searchText){
+  search(searchText) {
     window.alert('We are searching events related to ' + searchText);
   }
-  isRegistered(eventId, userId){
-    let result: boolean = false;
+  isRegistered(eventId, userId) {
+    let result = false;
 
     eventRegistrations.forEach(function (eR) {
-      if(eR.user_id == userId && eR.event_id == eventId) {
-        if (eR.status == "registered"){
+      if(eR.user_id === userId && eR.event_id === eventId) {
+        if (eR.status === 'registered') {
           result = true;
         }
       }
