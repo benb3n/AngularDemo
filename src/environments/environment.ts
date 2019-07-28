@@ -4,10 +4,12 @@
 import {Endpoints} from './endpoints';
 
 export const reportBaseURL = "http://192.168.8.192:5000";
+export const eventBaseURL = "http://192.168.8.192:5000/event";
 export const environment = {
   production: false,
   endpoints : Endpoints(
-    reportBaseURL
+    reportBaseURL,
+    eventBaseURL,
   )
 };
 

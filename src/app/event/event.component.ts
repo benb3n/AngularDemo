@@ -2,8 +2,8 @@ import { Component, NgModule, Injectable, OnInit } from '@angular/core';
 //import { events } from './events';
 import { CommunicatorService } from '../communicator.service';
 import { EventService } from './event.service';
-import { users } from './users';
-import { eventRegistrations } from './eventRegistrations'
+//import { users } from './users';
+//import { eventRegistrations } from './eventRegistrations'
 import { LoginService } from '../login/login.service';
 
 @Component({
@@ -18,30 +18,35 @@ export class EventComponent implements OnInit {
   users: any[];
   eventRegistrations: any[];
   currentUserId: string;
-  startDate: Date;
-  endDate: Date;
 
   title = 'Angular Search Using ng2-search-filter';
   searchText: string;
   constructor(private communicatorService: CommunicatorService, private eventService: EventService, private loginService: LoginService) { }
 
   ngOnInit() {
-    this.users = users;
-    this.eventRegistrations = eventRegistrations;
     this.currentUserId = this.loginService.currentUser.emailAddress;
-    this.startDate = new Date();
-    this.endDate = new Date("2020-12-31"); // ToFix
-    this.getAllEvents(this.startDate, this.endDate);
+    this.getEvents();
+    this.getEventRegistrations();
 
     console.log(this.events);
 
   }
 
-
-  getAllEvents(startDate, endDate) {
-    this.eventService.getAllEvents(this.startDate, this.endDate).subscribe(
+  getEvents() {
+    this.eventService.getEvents().subscribe(
       result => {
+        console.log(result);
         this.events = result;
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  getEventRegistrations(){
+    this.eventService.getEventRegistrations(this.currentUserId).subscribe(
+      result => {
+        console.log(result);
+        this.eventRegistrations = result;
       },
       (err) => console.error(err)
     );
@@ -51,13 +56,13 @@ export class EventComponent implements OnInit {
     // window.alert('The register function is not implemented yet');
     this.eventService.registerEvent(this.currentUserId, eventId).subscribe(
       (result) => {
-        window.alert(result);
+        console.log(result);
       },
       (err) => console.error(err)
     );
     this.communicatorService.subscribeEvent().subscribe(
       (result) => {
-        window.alert(result);
+        console.log(result);
       },
       (err) => console.error(err)
     );
@@ -67,29 +72,27 @@ export class EventComponent implements OnInit {
     // window.alert('The register function is not implemented yet');
     this.eventService.withdrawEvent(this.currentUserId, eventId).subscribe(
       (result) => {
-        window.alert(result);
+        console.log(result);
       },
       (err) => console.error(err)
     );
   }
 
   searchAllEvents(searchText) {
-    this.eventService.searchAllEvent(searchText).subscribe(
+    this.eventService.getEventsBySearchText(searchText).subscribe(
       (result) => {
-        window.alert(result);
+        console.log(result);
+        this.events = result;
       },
       (err) => console.error(err)
     );
   }
 
-  isRegistered(eventId, userId) { // ToFix, backend should give me the value directly 
+  isRegistered(eventId) { 
     let result: boolean = false;
-
-    eventRegistrations.forEach(function (eR) {
-      if (eR.user_id == userId && eR.event_id == eventId) {
-        if (eR.status == "registered") {
+    this.eventRegistrations.forEach(function (eR) {
+      if (eR.event_id == eventId) {
           result = true;
-        }
       }
     });
     return result;
