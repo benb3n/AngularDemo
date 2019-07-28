@@ -1,5 +1,5 @@
 import { Component, NgModule, Injectable, OnInit } from '@angular/core';
-import { events } from './events';
+//import { events } from './events';
 import { CommunicatorService } from '../communicator.service';
 import { EventService } from './event.service';
 import { users } from './users';
@@ -82,7 +82,7 @@ export class EventComponent implements OnInit {
     );
   }
 
-  isRegistered(eventId, userId) {
+  isRegistered(eventId, userId) { // ToFix, backend should give me the value directly 
     let result: boolean = false;
 
     eventRegistrations.forEach(function (eR) {
