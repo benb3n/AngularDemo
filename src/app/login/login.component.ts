@@ -18,15 +18,14 @@ export class LoginComponent implements OnInit {
   onSubmit(f) {
     const email = f.email;
     const password = f.password;
-    console.log(f);
-    this.loginService.currentUser = new User('admin', '1', '1', '1');
-    this.router.navigateByUrl('/home');
-    // this.loginService.login(email, password).subscribe(
-    //   (result) => {
-    //     console.log(result);
-    //   },
-    //   (err) => console.error(err)
-    // );
+    this.loginService.login(email, password).subscribe(
+      (result) => {
+        this.loginService.currentUser = new User().deserialized(result);
+        console.log(this.loginService.currentUser);
+        this.router.navigateByUrl('/home');
+      },
+      (err) => console.error(err)
+    );
   }
 
 }

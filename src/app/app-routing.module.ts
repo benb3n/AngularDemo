@@ -34,10 +34,10 @@ const appRoutes: Routes = [
     path: 'event',
     component: EventComponent
   },
-    {
-      path: 'event/admin',
-      component: EventAdminComponent
-    },
+  {
+    path: 'event/admin',
+    component: EventAdminComponent
+  },
   {
     path: 'report/user',
     component: ReportUserComponent
@@ -57,7 +57,8 @@ const appRoutes: Routes = [
   {
     path: 'report/eventFeedback',
     component: ReportFeedbackComponent
-  },{
+  },
+  {
     path: 'profile/edit-profile',
     component: EditProfileComponent
   },
@@ -66,11 +67,11 @@ const appRoutes: Routes = [
     component: MyEventComponent
   },
   {
-    path: 'organizaiton/group',
+    path: 'organization/group',
     component: GroupComponent
   },
   {
-    path: 'organizaiton/accesses',
+    path: 'organization/accesses',
     component: AccessesComponent
   },
   {

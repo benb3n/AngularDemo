@@ -14,16 +14,17 @@
       <ul class="nav navbar-nav">
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/home">Home <span class="sr-only">(current)</span></a></li>
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/event" *ngIf="this.loginService.isLogin()">Event</a></li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/event/admin" *ngIf="this.loginService.isLogin() && this.loginService.isAdmin()">Event (Admin)</a></li>
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/user" *ngIf="this.loginService.isLogin()">User Report</a></li>
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/admin" *ngIf="this.loginService.isLogin()">Admin Report</a></li>
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/eventparticipant" *ngIf="this.loginService.isLogin()">Event Details Report</a></li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/admin" *ngIf="this.loginService.isLogin() && this.loginService.isAdmin()">Admin Report</a></li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/eventparticipant" *ngIf="this.loginService.isLogin() && this.loginService.isAdmin()">Event Details Report</a></li>
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/orgevent" *ngIf="this.loginService.isLogin()">Organisation's Event</a></li>
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/report/eventFeedback" *ngIf="this.loginService.isLogin()">Event Feedback</a></li>
         <li class="dropdown" appDropdown>
           <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="this.loginService.isLogin()">Organizaiton <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a style="cursor: pointer;" routerLink="/organizaiton/group">Organisation group</a></li>
-            <li><a style="cursor: pointer;" routerLink="/organizaiton/accesses">Admin management</a></li>
+            <li><a style="cursor: pointer;" routerLink="/organization/group">Organisation group</a></li>
+            <li><a style="cursor: pointer;" routerLink="/organization/accesses">Admin management</a></li>
           </ul>
         </li>
       </ul>

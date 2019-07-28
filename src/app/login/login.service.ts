@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.entity';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService {
-  loginUrl = '';
+  loginUrl = 'http://192.168.8.190:5000';
   currentUser: User;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.get(this.loginUrl);
+  login(eMail: string, pwd: string): Observable<any> {
+    const httpHeader = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post(this.loginUrl + '/accounts/login', { email: eMail, password: pwd }, httpHeader);
   }
 
   logout() {
@@ -23,7 +28,15 @@ export class LoginService {
     return this.currentUser === undefined || this.currentUser === null ? false : true;
   }
 
-  getUserType(): string {
-    return this.isLogin() ? this.currentUser.accountType : null;
+  isAdmin(): boolean {
+    if (this.isLogin()) {
+      const accesses = this.currentUser.access;
+      for (const access of accesses) {
+        if (access.access === 'ADMIN' || access.access === 'SUPER_ADMIN') {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
