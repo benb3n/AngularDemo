@@ -1,8 +1,6 @@
-import { Component, NgModule, Injectable, OnInit } from '@angular/core';
-import { events } from './events';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { CommunicatorService } from '../communicator.service';
 import { EventService } from './event.service';
-import { users } from './users';
 import { eventRegistrations } from './eventRegistrations'
 import { LoginService } from '../login/login.service';
 
@@ -14,23 +12,38 @@ import { LoginService } from '../login/login.service';
 
 @Injectable()
 export class EventComponent implements OnInit {
-  events: any[];
+  events: any;
   users: any[];
   eventRegistrations: any[];
   currentUserId: string;
+
+  dtOptions: any = {};
 
   title = 'Angular Search Using ng2-search-filter';
   searchText: string;
   constructor(private communicatorService: CommunicatorService, private eventService: EventService, private loginService: LoginService) { }
 
   ngOnInit() {
-    this.events = events;
-    this.users = users;
+    this.getAllEvents();
     this.eventRegistrations = eventRegistrations;
-    this.currentUserId = this.loginService.currentUser.emailAddress;
+    //this.currentUserId = this.loginService.currentUser.emailAddress;
 
-    console.log(this.events);
+    // console.log(this.events);
+  }
 
+  getAllEvents(){
+    this.eventService.getEvents().subscribe(
+      (events) => {
+        this.events = events;
+        console.log(this.events);
+
+      },
+      (err) => console.error(err)
+    )
+  }
+
+  getOneEvent(){
+    this.eventService
   }
 
   register(currentUserId) {

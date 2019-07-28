@@ -1,5 +1,5 @@
 export function Endpoints(
-    reportBaseURL
+    reportBaseURL, eventBaseURL
 ){
     return {
         getAllEvents: reportBaseURL + '/getEvents',
@@ -7,6 +7,13 @@ export function Endpoints(
         getUserEvent: reportBaseURL + '/getUserEvents',
         getEventParticipant: reportBaseURL + '/getEventUsers',
         getOrgEvent: reportBaseURL + '/getOrgEvents',
-        getEventFeedback: reportBaseURL + '/getEventFeedback'
+        getEventFeedback: reportBaseURL + '/getEventFeedback',
+
+        getEvents: eventBaseURL + '/event/view/',
+        getOneEvents: eventBaseURL + '/event/view/',
+        getEventsBySearch: eventBaseURL + '/event/getEvents/search',
+        getEventRegistrations: eventBaseURL + '/event/getEventRegistrations',
+        registerEvent: eventBaseURL + '/event/register',
+        withdrawEvent: eventBaseURL + '/event/withdraw'
     }
 }

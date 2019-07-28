@@ -2,38 +2,41 @@
 
 <div class="container">
   <div class="row">
-      <div class="search-bar">
-        <input size="100" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search event"
-        (keyup.enter)="searchAllEvents(searchText)">
-      </div>
-  </div> 
+    <div class="search-bar">
+      <input size="100" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search event" (keyup.enter)="searchAllEvents(searchText)">
+    </div>
+  </div>
 
 
 </div>
 <h2> Here are some nice events!</h2>
+
+
 <div class="panel panel-default" *ngFor="let event of events">
   <div class="panel-heading">
     <h3 class="panel-title">
-      <a [title]="event.name + ' description'">
-        {{event.name}}
+      <a [title]="event.EventName ">
+        {{event.EventName}}
       </a>
     </h3>
   </div>
   <div class="panel-body">
-    <p *ngIf="event.description">
-      Description: {{ event.description }}
+    <p *ngIf="event.EventDescription">
+      Description: {{ event.EventDescription }}
     </p>
 
-    <p *ngIf="event.date">
-      Date: {{ event.date }}
+    <p *ngIf="event.StartTime">
+      Date: {{ event.StartTime }}
     </p>
-    <p *ngIf="isRegistered(event.id, currUserId)">
-      You are registered :)
+    <p *ngIf="isRegistered(event.id, currUserId)">rxi You are registered :)
     </p>
+    <button class="btn btn-primary" *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
+      View Details
+    </button>
     <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw()">
-        Withdraw
-      </button>
-    <button *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
+      Withdraw
+    </button>
+    <button class="btn btn-primary" *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
       Register
     </button>
   </div>

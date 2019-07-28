@@ -51,7 +51,6 @@ const featureModules = [
     RegisterComponent,
     AccessesComponent,
     GroupComponent,
-
   ],
   imports: [
     ReportModule,
@@ -69,7 +68,7 @@ const featureModules = [
     MatNativeDateModule,
     NgbModule,
     ...featureModules,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
