@@ -18,19 +18,33 @@ export class EventComponent implements OnInit {
   users: any[];
   eventRegistrations: any[];
   currentUserId: string;
+  startDate: Date;
+  endDate: Date;
 
   title = 'Angular Search Using ng2-search-filter';
   searchText: string;
   constructor(private communicatorService: CommunicatorService, private eventService: EventService, private loginService: LoginService) { }
 
   ngOnInit() {
-    this.events = events;
     this.users = users;
     this.eventRegistrations = eventRegistrations;
     this.currentUserId = this.loginService.currentUser.emailAddress;
+    this.startDate = new Date();
+    this.endDate = new Date("2020-12-31"); // ToFix
+    this.getAllEvents(this.startDate, this.endDate);
 
     console.log(this.events);
 
+  }
+
+
+  getAllEvents(startDate, endDate) {
+    this.eventService.getAllEvents(this.startDate, this.endDate).subscribe(
+      result => {
+        this.events = result;
+      },
+      (err) => console.error(err)
+    );
   }
 
   register(currentUserId) {
@@ -48,6 +62,7 @@ export class EventComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+  
   withdraw(currentUserId) {
     // window.alert('The register function is not implemented yet');
     this.eventService.withdrawEvent().subscribe(
@@ -58,7 +73,7 @@ export class EventComponent implements OnInit {
     );
   }
 
-  searchAllEvents(searchText){
+  searchAllEvents(searchText) {
     this.eventService.searchAllEvent(searchText).subscribe(
       (result) => {
         window.alert(result);
@@ -67,12 +82,12 @@ export class EventComponent implements OnInit {
     );
   }
 
-  isRegistered(eventId, userId){
+  isRegistered(eventId, userId) {
     let result: boolean = false;
 
     eventRegistrations.forEach(function (eR) {
-      if(eR.user_id == userId && eR.event_id == eventId) {
-        if (eR.status == "registered"){
+      if (eR.user_id == userId && eR.event_id == eventId) {
+        if (eR.status == "registered") {
           result = true;
         }
       }

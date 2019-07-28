@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -15,6 +15,12 @@ export class EventService {
   eventServiceUrl = 'http://192.168.8.197:5000/events/reminders/signupEvent?EventID=1&UserID=1';
   constructor(private http: HttpClient) {}
 
+  public getAllEvents(startDate, endDate): Observable<any> {
+    const param = new HttpParams()
+    .set('startDate', startDate)
+    .set('endDate', endDate);
+    return this.http.get(this.eventServiceUrl, null);
+  }
   public registerEvent(): Observable<any> {
     return this.http.post(this.eventServiceUrl, null);
   }
