@@ -8,7 +8,6 @@
       </div>
   </div> 
 
-
 </div>
 <h2> Here are some nice events!</h2>
 <div class="panel panel-default" *ngFor="let event of events">
@@ -30,10 +29,10 @@
     <p *ngIf="isRegistered(event.id, currUserId)">
       You are registered :)
     </p>
-    <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw()">
+    <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw(event.id)">
         Withdraw
       </button>
-    <button *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
+    <button *ngIf="!isRegistered(event.id, currUserId)" (click)="register(event.id)">
       Register
     </button>
   </div>

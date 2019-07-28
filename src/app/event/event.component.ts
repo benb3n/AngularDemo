@@ -47,9 +47,9 @@ export class EventComponent implements OnInit {
     );
   }
 
-  register(currentUserId) {
+  register(eventId) {
     // window.alert('The register function is not implemented yet');
-    this.eventService.registerEvent().subscribe(
+    this.eventService.registerEvent(this.currentUserId, eventId).subscribe(
       (result) => {
         window.alert(result);
       },
@@ -63,9 +63,9 @@ export class EventComponent implements OnInit {
     );
   }
   
-  withdraw(currentUserId) {
+  withdraw(eventId) {
     // window.alert('The register function is not implemented yet');
-    this.eventService.withdrawEvent().subscribe(
+    this.eventService.withdrawEvent(this.currentUserId, eventId).subscribe(
       (result) => {
         window.alert(result);
       },

@@ -21,13 +21,21 @@ export class EventService {
     .set('endDate', endDate);
     return this.http.get(this.eventServiceUrl, null);
   }
-  public registerEvent(): Observable<any> {
+  public registerEvent(userId, eventId): Observable<any> {
+    const param = new HttpParams()
+    .set('userId', userId)
+    .set('eventId', eventId);
     return this.http.post(this.eventServiceUrl, null);
   }
-  public withdrawEvent(): Observable<any> {
+  public withdrawEvent(userId, eventId): Observable<any> {
+    const param = new HttpParams()
+    .set('userId', userId)
+    .set('eventId', eventId);
     return this.http.post(this.eventServiceUrl, null);
   }
   public searchAllEvent(searchText): Observable<any> {
+    const param = new HttpParams()
+    .set('searchText', searchText);
     return this.http.post(this.eventServiceUrl, null);
   }
 }
