@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EventRegistration } from './eventRegistration.entity';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,19 +11,30 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
 
-  sampleData = { EventID: 1, UserID: 1 };
-  // communicatorServiceUrl = 'http://demotest-env.cfqxtpafbz.ap-southeast-1.elasticbeanstalk.com/events/reminders/signupEvent';
-  // communicatorServiceUrl = 'http://192.168.8.197:5000/events/reminders/signupEvent';
-  eventServiceUrl = 'http://192.168.8.197:5000/events/reminders/signupEvent?EventID=1&UserID=1';
   constructor(private http: HttpClient) {}
 
-  public registerEvent(): Observable<any> {
-    return this.http.post(this.eventServiceUrl, null);
+  public getEvents(): Observable<any> {
+    return this.http.get(environment.endpoints.getEvents);
   }
-  public withdrawEvent(): Observable<any> {
-    return this.http.post(this.eventServiceUrl, null);
+
+  public getEventsBySearchText(searchText): Observable<any> {
+      const param = new HttpParams()
+                .set('searchText', searchText);
+    return this.http.get<Event[]>(environment.endpoints.getEventsBySearch, {params:param});
   }
-  public searchAllEvent(searchText): Observable<any> {
-    return this.http.post(this.eventServiceUrl, null);
+
+  public getEventRegistrations(userId): Observable<any> {
+    const param = new HttpParams()
+    .set('userId', userId);
+      return this.http.get<EventRegistration[]>(environment.endpoints.getEventRegistrations, {params:param});
   }
+
+  public registerEvent(userId, eventId) {
+    return this.http.post(`${environment.endpoints.registerEvent}/${userId}:${eventId}`, null)
+  }
+
+  public withdrawEvent(userId, eventId){
+    return this.http.post(`${environment.endpoints.withdrawEvent}/${userId}:${eventId}`, null)
+  }
+
 }
