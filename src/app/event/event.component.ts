@@ -1,7 +1,9 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, NgModule, Injectable, OnInit } from '@angular/core';
+//import { events } from './events';
 import { CommunicatorService } from '../communicator.service';
 import { EventService } from './event.service';
-import { eventRegistrations } from './eventRegistrations'
+//import { users } from './users';
+//import { eventRegistrations } from './eventRegistrations'
 import { LoginService } from '../login/login.service';
 
 @Component({
@@ -24,9 +26,10 @@ export class EventComponent implements OnInit {
   constructor(private communicatorService: CommunicatorService, private eventService: EventService, private loginService: LoginService) { }
 
   ngOnInit() {
-    this.getAllEvents();
-    this.eventRegistrations = eventRegistrations;
     //this.currentUserId = this.loginService.currentUser.emailAddress;
+    this.currentUserId = "1";
+    this.getEventRegistrations();
+    
 
     // console.log(this.events);
   }
@@ -46,48 +49,74 @@ export class EventComponent implements OnInit {
     this.eventService
   }
 
-  register(currentUserId) {
-    // window.alert('The register function is not implemented yet');
-    this.eventService.registerEvent().subscribe(
-      (result) => {
-        window.alert(result);
-      },
-      (err) => console.error(err)
-    );
-    this.communicatorService.subscribeEvent().subscribe(
-      (result) => {
-        window.alert(result);
-      },
-      (err) => console.error(err)
-    );
-  }
-  withdraw(currentUserId) {
-    // window.alert('The register function is not implemented yet');
-    this.eventService.withdrawEvent().subscribe(
-      (result) => {
-        window.alert(result);
+  getEvents() {
+    this.eventService.getEvents().subscribe(
+      result => {
+        console.log(result);
+        this.events = result;
       },
       (err) => console.error(err)
     );
   }
 
-  searchAllEvents(searchText){
-    this.eventService.searchAllEvent(searchText).subscribe(
-      (result) => {
-        window.alert(result);
+  getEventRegistrations(){
+    this.eventService.getEventRegistrations(this.currentUserId).subscribe(
+      result => {
+        console.log(result);
+        this.eventRegistrations = result;
+
+        this.getAllEvents();
       },
       (err) => console.error(err)
     );
   }
 
-  isRegistered(eventId, userId){
+  register(eventId) {
+    // window.alert('The register function is not implemented yet');
+    this.eventService.registerEvent(this.currentUserId, eventId).subscribe(
+      (result) => {
+        console.log(result);
+
+        this.getEventRegistrations();
+      },
+      (err) => console.error(err)
+    );
+    // this.communicatorService.subscribeEvent().subscribe(
+    //   (result) => {
+    //     console.log(result);
+    //   },
+    //   (err) => console.error(err)
+    // );
+  }
+  
+  withdraw(eventId) {
+    // window.alert('The register function is not implemented yet');
+    this.eventService.withdrawEvent(this.currentUserId, eventId).subscribe(
+      (result) => {
+        console.log(result);
+
+        this.getEventRegistrations();
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  searchAllEvents(searchText) {
+    this.eventService.getEventsBySearchText(searchText).subscribe(
+      (result) => {
+        console.log(result);
+        this.events = result;
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  isRegistered(eventId) { 
     let result: boolean = false;
-
-    eventRegistrations.forEach(function (eR) {
-      if(eR.user_id == userId && eR.event_id == eventId) {
-        if (eR.status == "registered"){
+    this.eventRegistrations.forEach(function (eR) {
+      console.log(eR.EventID + " , " + eventId)
+      if (eR.EventID == eventId) {
           result = true;
-        }
       }
     });
     return result;

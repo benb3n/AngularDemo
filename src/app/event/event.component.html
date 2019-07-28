@@ -7,7 +7,6 @@
     </div>
   </div>
 
-
 </div>
 <h2> Here are some nice events!</h2>
 
@@ -28,15 +27,13 @@
     <p *ngIf="event.StartTime">
       Date: {{ event.StartTime }}
     </p>
-    <p *ngIf="isRegistered(event.id, currUserId)">rxi You are registered :)
+    <p *ngIf="isRegistered(event.EventID)">
+      You are registered :)
     </p>
-    <button class="btn btn-primary" *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
-      View Details
-    </button>
-    <button *ngIf="isRegistered(event.id, currUserId)" (click)="withdraw()">
-      Withdraw
-    </button>
-    <button class="btn btn-primary" *ngIf="!isRegistered(event.id, currUserId)" (click)="register()">
+    <button class="btn btn-danger" *ngIf="isRegistered(event.EventID, currUserId)" (click)="withdraw(event.EventID)">
+        Withdraw
+      </button>
+    <button class="btn btn-primary" *ngIf="!isRegistered(event.EventID, currUserId)" (click)="register(event.EventID)">
       Register
     </button>
   </div>
