@@ -39,4 +39,12 @@ export class LoginService {
     }
     return false;
   }
+  register(eMail: string, pwd: string, firstName: string, lastName: string, gender: string, birthday: string, nationality: string, interest: string, region: string){
+    const httpHeader = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post(this.loginUrl + '/accounts/registration', { email: eMail, password: pwd , firstName: firstName, lastName: lastName, gender: gender, birthDate: birthday, nationality: nationality, interest: interest, region: region}, httpHeader);
+  }
 }
