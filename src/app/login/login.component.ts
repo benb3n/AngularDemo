@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(email, password).subscribe(
       (result) => {
         this.loginService.currentUser = new User().deserialized(result);
-        console.log(this.loginService.currentUser);
         this.router.navigateByUrl('/home');
       },
       (err) => console.error(err)
